@@ -11,18 +11,24 @@ client = Elasticsearch(
 )
 
 # Successful response!
-response = client.search(
-    index="kibana_sample_data_ecommerce",
-    query={
-        "bool": {
-            "must": [
-                {"range": {"taxful_total_price": {"lte": 100}}},
-                {"term": {"geoip.city_name": "Birmingham"}},
-            ]
-        }
-    },
-    aggregations={"cities": {"terms": {"field": "customer_id"}}},
-    size=5,
-)
+# response = client.search(
+#     index="kibana_sample_data_ecommerce",
+#     query={
+#         "bool": {
+#             "must": [
+#                 {"range": {"taxful_total_price": {"lte": 100}}},
+#                 {"term": {"geoip.city_name": "Birmingham"}},
+#             ]
+#         }
+#     },
+#     aggregations={"cities": {"terms": {"field": "customer_id"}}},
+#     size=5,
+# )
 
+# response = client.index(document={"field1": "value1"}, index="workshop-day3")
+
+# response = client.indices.refresh(index="workshop-day3")
+
+response = client.delete(index="workshop-day3", id="1")
+client.indices.refresh(index="workshop-day3")
 print(response)
