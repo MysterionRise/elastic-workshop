@@ -34,7 +34,8 @@ def read_movie_data(path_to_data):
             parsed_movies.append(
                 {"id": columns[0], "title": title, "year": year[:-1], "genres": genres}
             )
-        except:
+        except Exception as e:
+            print(e)
             errors += 1
             # silently ignore error TODO fix NEVER DO IN PRODUCTON
             # print(movie)
